@@ -28,14 +28,14 @@
   <body>
     <div class="center-block text-align">
      <div class="container">
-      <form class= "form-horizontal" action="<?php echo $current_file; ?>" method="POST">
+      <form class= "form-horizontal" action="loginHandler.php" method="POST">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
           <h2 class="form-signin-heading">Please sign in</h2>
           <label for="inputUsername">Username</label>
-          <input type="username" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
+          <input type="username" name="username" class="form-control" placeholder="Username" required autofocus>
           <label for="inputPassword">Password</label>
-          <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
+          <input type="password" name="password" class="form-control" placeholder="Password" required>
           <button class="btn btn btn-danger btn-block" type="submit">Sign in</button>
         </div>
         <div class="col-lg-4"></div>

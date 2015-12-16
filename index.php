@@ -1,42 +1,41 @@
-<?php
-	/* @author Shaun Hayner
-		* @version Group Project 
-		* @see 
-	*/
-	
-	error_reporting(E_ALL);
-	
-	require_once('survey-functions.php');
-	
-	$meeting_types = array('Individual', 'Group');
-	$meeting_types_cols = 2;
-	$advisors = array('Teresa D.', 'Leanne H.', 'John L.', 'Ellen T.', 'Sarah R.', 'Carolyn S.', 'Alumni / employer', 'Other / do not recall');
-	$advisors_cols = 3;
-	$topics = array('Assessments / Focus', 'Resume / Cover Letter', 'Graduate School', 'Internships', 'Interview Prep', 'Job Search', 'Social Media', 'What can I do with this major?', 'Hire A Hirelander / Work-Study', 'Career Resources / Other');
-	$topics_cols = 2;
-	$scale = array('5', '4', '3', '2', '1');
-?>
-
+<!--
+	@author Shaun Hayner
+	@version Group Project
+ -->
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Survey</title>
-		<style>
+		<style >
+			h3			{color:#c2011b;font-weight:bold;text-align:center;}
 			p#p01		{color:#c2011b;font-weight:bold;}
 			p#p02		{color:#c2011b;font-size:150%;}
-			p#p03		{color:#c2011b;}
 			textarea	{resize:none;}
+			img			{
+				display: block;
+				margin-left: auto;
+				margin-right: auto }
 		</style>
+		<img src='RadfordU_CareerCenter_HorizOnLight_Proc.png' alt='Sorry!' />
 	</head>
 	<body>
-		<img src='https://php.radford.edu/~shayner2/itec325/Group_Project/RadfordU_CareerCenter_HorizOnLight_Proc.png' alt='Sorry!' />
+<?php
+	error_reporting(E_ALL);
+	
+	require_once('survey-functions.php');
+	
+	retrieve_active_advisors();
+	retrieve_topics();
+	
+	if(empty($_POST) === true){
+?>
 		<p id='p02'>
 			How are we doing?
 		</p>
-		<p>
+		<p >
 			We are committed to providing you with the best service possible, so we welcome your opinion. Please fill this questionaire.
 		</p>
-		<form action='survey-form-handling.php' method='post'>
+		<form action='survey.php' method='post'>
 			<p id='p01'>
 				Was this an individual appointment or group presentation?
 			</p>
@@ -77,11 +76,19 @@
 				echo scaleTable($scale,3);
 			?>
 			<hr>
-			<p id='p03'>
+			<p id='p01'>
 				Comments
 			</p>
 			<textarea  name='comment' rows='4' cols='50'></textarea><br />
 			<input type='submit' value='Submit'>
 		</form>
+	<?php
+	} else {
+		submit_survey();
+	?>
+		<h3>Thank you for submitting our survey!</h3>
+	<?php
+	}
+	?>
 	</body>
 </html>
